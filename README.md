@@ -25,7 +25,7 @@ Once you added the public key, also add an entry for the XLibre repository to th
 
 ```ini
 [xlibre]
-Server = https://xlibre-artix.github.io/$arch
+Server = https://xlibre-artix.github.io/stable/$arch
 ```
 
 Run `pacman` to update all package indexes and installed packages:
