@@ -1,8 +1,8 @@
 <!-- ![XLibre on Artix Linux](./docs/img/screenshot.jpg) -->
 
-# XLibre Packages for Artix Linux Systems
+# XLibre Testing Packages for Artix Linux
 
-This third-party repository provides [XLibre](https://xlibre.net) x86_64 binary  packages for [Artix Linux](https://artixlinux.org)-based distributions. XLibre is the community-managed display server for the [X Window System Protocol Version 11 (Wikipedia)](https://en.wikipedia.org/wiki/X_Window_System_core_protocol), in short, X11. You can learn more about XLibre at [xlibre.net](https://xlibre.net/).
+This third-party repository provides [XLibre](https://xlibre.net) x86_64 binary packages for [Artix Linux](https://artixlinux.org) for testing purposes. XLibre is the community-managed display server for the [X Window System Protocol Version 11 (Wikipedia)](https://en.wikipedia.org/wiki/X_Window_System_core_protocol), in short, X11. You can learn more about XLibre at [xlibre.net](https://xlibre.net/).
 
 ## Installing XLibre Manually
 
@@ -21,7 +21,10 @@ You can read more about package signing on the [pacman/Package signing - ArchWik
 
 ### Adding the Repository to Pacman
 
-Once you added the public key, also add an entry for the XLibre repository to the end of the file [`/etc/pacman.conf`](https://man.archlinux.org/man/pacman.conf.5) using [`sudo`](https://wiki.archlinux.org/title/Sudo) and your favorite editor:
+Once you added the public key, also add an entry for the XLibre repository to the file [`/etc/pacman.conf`](https://man.archlinux.org/man/pacman.conf.5) using [`sudo`](https://wiki.archlinux.org/title/Sudo) and your favorite editor.
+
+> [!IMPORTANT]
+> The following entry has to be added after the `[system]` key, but **before** the `[world]` key. Artix ships its own version of XLibre in the `world` repository and that needs to be overridden.
 
 ```ini
 [xlibre]
