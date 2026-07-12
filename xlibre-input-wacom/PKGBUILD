@@ -11,15 +11,21 @@ _pkgname=xf86-input-wacom
 pkgver=25.0.0
 pkgrel=50
 pkgdesc="X.Org Wacom tablet driver"
-arch=(x86_64)
+arch=('x86_64')
 url='https://github.com/X11Libre/xf86-input-wacom'
 license=('GPL-2.0-or-later')
-depends=('udev' 'libxi' 'libxinerama' 'libxrandr' 'libx11' 'glibc' 'xlibre-xserver')
-makedepends=('xlibre-xserver-devel' 'X-ABI-XINPUT_VERSION=26.0' 'meson'
-            'gobject-introspection'
-            # for tests
-            'python-libevdev' 'python-pytest' 'python-yaml' 'python-gobject' 'python-attrs')
-provides=('xf86-input-wacom' 'x11win-input-wacom') # for wacomtablet
+depends=('glibc' 'libx11' 'libxi' 'libxinerama' 'libxrandr' 'udev' 'xlibre-xserver')
+makedepends=('gobject-introspection'
+             'meson'
+             'python-attrs' # for tests
+             'python-gobject' # for tests
+             'python-libevdev' # for tests
+             'python-pytest' # for tests
+             'python-yaml' # for tests
+             'xlibre-xserver-devel'
+             'X-ABI-XINPUT_VERSION=26.0')
+provides=('x11win-input-wacom' # for wacomtablet pkg
+          'xf86-input-wacom')
 conflicts=('xf86-input-wacom' 'X-ABI-XINPUT_VERSION<26' 'X-ABI-XINPUT_VERSION>=27')
 groups=('xlibre-drivers')
 source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${pkgver}.tar.gz")

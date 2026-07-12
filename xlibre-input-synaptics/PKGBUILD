@@ -15,8 +15,8 @@ pkgdesc="XLibre Synaptics driver for notebook touchpads"
 arch=('x86_64')
 license=('MIT')
 url='https://github.com/X11Libre/xf86-input-synaptics'
-depends=('libxtst' 'libevdev' 'libx11' 'libxi' 'glibc' 'xlibre-xserver')
-makedepends=('xlibre-xserver-devel' 'X-ABI-XINPUT_VERSION=26.0' 'xorgproto')
+depends=('glibc' 'libevdev' 'libx11' 'libxi' 'libxtst' 'xlibre-xserver')
+makedepends=('xlibre-xserver-devel' 'xorgproto' 'X-ABI-XINPUT_VERSION=26.0')
 conflicts=('xf86-input-synaptics' 'X-ABI-XINPUT_VERSION<26' 'X-ABI-XINPUT_VERSION>=27')
 replaces=('synaptics')
 provides=('synaptics')

@@ -10,11 +10,11 @@ _pkgname=xf86-input-evdev
 pkgver=25.0.0
 pkgrel=50
 pkgdesc="XLibre evdev input driver"
-arch=(x86_64)
+arch=('x86_64')
 url='https://github.com/X11Libre/xf86-input-evdev'
 license=('HPND-sell-variant AND MIT')
-depends=('udev' 'mtdev' 'libevdev' 'glibc' 'xlibre-xserver')
-makedepends=('xlibre-xserver-devel' 'X-ABI-XINPUT_VERSION=26.0' 'xorgproto')
+depends=('glibc' 'libevdev' 'mtdev' 'udev' 'xlibre-xserver')
+makedepends=('xlibre-xserver-devel' 'xorgproto' 'X-ABI-XINPUT_VERSION=26.0')
 conflicts=('xf86-input-evdev' 'X-ABI-XINPUT_VERSION<26' 'X-ABI-XINPUT_VERSION>=27')
 # options=('!makeflags')
 groups=('xlibre-drivers')

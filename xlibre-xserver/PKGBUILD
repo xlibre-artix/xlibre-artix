@@ -5,8 +5,12 @@
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
 pkgbase=xlibre-xserver
-pkgname=('xlibre-xserver' 'xlibre-xserver-xephyr' 'xlibre-xserver-xvfb'
-         'xlibre-xserver-xnest' 'xlibre-xserver-common' 'xlibre-xserver-devel')
+pkgname=('xlibre-xserver'
+         'xlibre-xserver-common'
+         'xlibre-xserver-devel'
+         'xlibre-xserver-xephyr'
+         'xlibre-xserver-xnest'
+         'xlibre-xserver-xvfb')
 pkgver=25.1.8
 pkgrel=50
 arch=('x86_64')
@@ -24,16 +28,38 @@ license=('LicenseRef-Adobe-Display-PostScript'
          'SGI-B-2.0'
          'SMLNJ'
          'X11'
-         'X11-distribute-modifications-variant'
-)
+         'X11-distribute-modifications-variant')
 groups=('xlibre')
 url="https://xlibre.net"
-makedepends=('xorgproto' 'pixman' 'libx11' 'mesa' 'mesa-libgl'
-             'libxkbfile' 'libxfont2' 'libpciaccess' 'libxv' 'libxcvt'
-             'libxmu' 'libxrender' 'libxi' 'libxaw' 'libxtst' 'libxres'
-             'xorg-xkbcomp' 'xorg-util-macros' 'xorg-font-util' 'libepoxy'
-             'xcb-util' 'xcb-util-image' 'xcb-util-renderutil' 'xcb-util-wm' 'xcb-util-keysyms'
-             'libxshmfence' 'libunwind' 'dbus' 'meson')
+makedepends=('dbus'
+             'libepoxy'
+             'libpciaccess'
+             'libunwind'
+             'libx11'
+             'libxaw'
+             'libxcvt'
+             'libxfont2'
+             'libxi'
+             'libxkbfile'
+             'libxmu'
+             'libxrender'
+             'libxres'
+             'libxshmfence'
+             'libxtst'
+             'libxv'
+             'mesa'
+             'mesa-libgl'
+             'meson'
+             'pixman'
+             'xcb-util'
+             'xcb-util-image'
+             'xcb-util-keysyms'
+             'xcb-util-renderutil'
+             'xcb-util-wm'
+             'xorg-font-util'
+             'xorg-util-macros'
+             'xorg-xkbcomp'
+             'xorgproto')
 source=(https://github.com/X11Libre/xserver/archive/refs/tags/${pkgbase}-"${pkgver}".tar.gz
         xvfb-run # with updates from FC master
         xvfb-run.1
@@ -94,7 +120,7 @@ _install() {
 
 package_xlibre-xserver-common() {
   pkgdesc="XLibre server common files"
-  depends=(xkeyboard-config xorg-xkbcomp xorg-setxkbmap)
+  depends=('xkeyboard-config' 'xorg-setxkbmap' 'xorg-xkbcomp')
   provides=('xorg-server-common')
   conflicts=('xlibre-xserver-common-beta' 'xorg-server-common')
 
@@ -107,15 +133,35 @@ package_xlibre-xserver-common() {
 }
 
 package_xlibre-xserver() {
-  pkgdesc="XLibre X server"
-  depends=(libepoxy libxfont2 pixman xlibre-xserver-common libunwind
-           dbus libgl nettle
-           libxdmcp sh glibc libxau elogind libtirpc libbsd
-           libpciaccess libdrm libxshmfence libxcvt) # FS#52949
+  pkgdesc="XLibre Xserver"
+  depends=('dbus'
+           'elogind'
+           'glibc'
+           'libbsd'
+           'libdrm'
+           'libepoxy'
+           'libgl'
+           'libpciaccess'
+           'libtirpc'
+           'libunwind'
+           'libxau'
+           'libxcvt # FS#52949'
+           'libxdmcp'
+           'libxfont2'
+           'libxshmfence'
+           'nettle'
+           'pixman'
+           'sh'
+           'xlibre-xserver-common')
   # see xorg-server-*/hw/xfree86/common/xf86Module.h for ABI versions - we provide major numbers that drivers can depend on
   # and /usr/lib/pkgconfig/xorg-server.pc in xorg-server-devel pkg
-  provides=('xorg-server' 'X-ABI-VIDEODRV_VERSION=28.0' 'X-ABI-XINPUT_VERSION=26.0' 'X-ABI-EXTENSION_VERSION=11.0' 'x-server' 'x11win-server')
-  conflicts=('xlibre-xserver-beta' 'xorg-server' 'nvidia-utils<=331.20' 'glamor-egl' 'xf86-video-modesetting')
+  provides=('x-server'
+            'x11win-server'
+            'xorg-server'
+            'X-ABI-EXTENSION_VERSION=11.0'
+            'X-ABI-VIDEODRV_VERSION=28.0'
+            'X-ABI-XINPUT_VERSION=26.0')
+  conflicts=('nvidia-utils<=331.20' 'glamor-egl' 'xf86-video-modesetting' 'xlibre-xserver-beta' 'xorg-server')
   replaces=('glamor-egl' 'xf86-video-modesetting')
 
   _install fakeinstall/usr/bin/{X,Xorg,gtf,Xfbdev}
@@ -135,10 +181,25 @@ package_xlibre-xserver() {
 
 package_xlibre-xserver-xephyr() {
   pkgdesc="A nested X server that runs as an X application"
-  depends=(libxfont2 libgl libepoxy libunwind elogind pixman xlibre-xserver-common
-           xcb-util-image xcb-util-renderutil xcb-util-wm xcb-util-keysyms
-           nettle libtirpc
-           xcb-util libxdmcp libx11 libxau libxshmfence glibc)
+  depends=('elogind'
+           'glibc'
+           'libepoxy'
+           'libgl'
+           'libtirpc'
+           'libunwind'
+           'libx11'
+           'libxau'
+           'libxdmcp'
+           'libxfont2'
+           'libxshmfence'
+           'nettle'
+           'pixman'
+           'xcb-util'
+           'xcb-util-image'
+           'xcb-util-keysyms'
+           'xcb-util-renderutil'
+           'xcb-util-wm'
+           'xlibre-xserver-common')
   provides=('xorg-server-xephyr')
   conflicts=('xlibre-xserver-xephyr-beta' 'xorg-server-xephyr')
 
@@ -153,9 +214,19 @@ package_xlibre-xserver-xvfb() {
   pkgdesc="Virtual framebuffer X server"
   # xvfb-run is GPLv2, rest is MIT
   license=('MIT' 'GPL-2.0-only')
-  depends=(libxfont2 libunwind pixman xlibre-xserver-common xorg-xauth
-           libgl nettle libtirpc elogind
-           libxdmcp sh glibc libxau)
+  depends=('elogind'
+           'glibc'
+           'libgl'
+           'libtirpc'
+           'libunwind'
+           'libxau'
+           'libxdmcp'
+           'libxfont2'
+           'nettle'
+           'pixman'
+           'sh'
+           'xlibre-xserver-common'
+           'xorg-xauth')
   provides=('xorg-server-xvfb')
   conflicts=('xlibre-xserver-xvfb-beta' 'xorg-server-xvfb')
 
@@ -171,9 +242,18 @@ package_xlibre-xserver-xvfb() {
 
 package_xlibre-xserver-xnest() {
   pkgdesc="A nested X server that runs as an X application"
-  depends=(libxfont2 libunwind libxext pixman xlibre-xserver-common nettle
-           libtirpc elogind
-           libxdmcp glibc libx11 libxau)
+  depends=('elogind'
+           'glibc'
+           'libtirpc'
+           'libunwind'
+           'libx11'
+           'libxau'
+           'libxdmcp'
+           'libxext'
+           'libxfont2'
+           'nettle'
+           'pixman'
+           'xlibre-xserver-common')
   provides=('xorg-server-xnest')
   conflicts=('xlibre-xserver-xnest-beta' 'xorg-server-xnest')
 
@@ -186,9 +266,12 @@ package_xlibre-xserver-xnest() {
 
 package_xlibre-xserver-devel() {
   pkgdesc="Development files for the XLibre Xserver"
-  depends=('xlibre-xserver' 'xorgproto' 'mesa' 'libpciaccess' 'pixman'
-           # not technically required but almost every XLibre pkg needs it to build
-           'xorg-util-macros')
+  depends=('libpciaccess'
+           'mesa'
+           'pixman'
+           'xlibre-xserver'
+           'xorg-util-macros' # not required but almost every XLibre pkg needs it
+           'xorgproto')
   provides=('xorg-server-devel')
   conflicts=('xlibre-xserver-devel-beta' 'xorg-server-devel')
 

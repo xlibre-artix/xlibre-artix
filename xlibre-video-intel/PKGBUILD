@@ -8,27 +8,49 @@ pkgname=xlibre-video-intel
 _pkgname=xf86-video-intel
 pkgver=25.0.0
 pkgrel=50
-arch=(x86_64)
+arch=('x86_64')
 url='https://github.com/X11Libre/xf86-video-intel'
 license=('MIT')
 install=$pkgname.install
 pkgdesc="XLibre Intel i810/i830/i915/945G/G965+ video drivers"
-depends=('mesa' 'libxvmc' 'pixman' 'xcb-util>=0.3.9' 'udev'
-         'libxcb' 'libxfixes' 'libxshmfence' 'libdrm' 'libxrender'
-         'libx11' 'libxdamage' 'libxext' 'libpciaccess' 'glibc' 'xlibre-xserver')
-makedepends=('xlibre-xserver-devel' 'X-ABI-VIDEODRV_VERSION=28.0' 'libxv'
-             # additional deps for intel-virtual-output
-             'libxrandr' 'libxinerama' 'libxcursor' 'libxtst' 'libxss')
-             # 'meson' 'valgrind')
-optdepends=('libxrandr: for intel-virtual-output'
+depends=('glibc'
+         'libdrm'
+         'libpciaccess'
+         'libx11'
+         'libxcb'
+         'libxdamage'
+         'libxext'
+         'libxfixes'
+         'libxrender'
+         'libxshmfence'
+         'libxvmc'
+         'mesa'
+         'pixman'
+         'udev'
+         'xcb-util>=0.3.9'
+         'xlibre-xserver')
+makedepends=('libxcursor' # for intel-virtual-output
+             'libxinerama' # for intel-virtual-output
+             'libxrandr' # for intel-virtual-output
+             'libxss' # for intel-virtual-output
+             'libxtst' # for intel-virtual-output
+             'libxv'
+             'xlibre-xserver-devel'
+             'X-ABI-VIDEODRV_VERSION=28.0') # 'meson' 'valgrind')
+optdepends=('libxcursor: for intel-virtual-output'
             'libxinerama: for intel-virtual-output'
-            'libxcursor: for intel-virtual-output'
-            'libxtst: for intel-virtual-output'
-            'libxss: for intel-virtual-output')
+            'libxrandr: for intel-virtual-output'
+            'libxss: for intel-virtual-output'
+            'libxtst: for intel-virtual-output')
 replaces=('xf86-video-intel-uxa' 'xf86-video-intel-sna')
 provides=('xf86-video-intel-uxa' 'xf86-video-intel-sna')
-conflicts=('xf86-video-intel' 'X-ABI-VIDEODRV_VERSION<28' 'X-ABI-VIDEODRV_VERSION>=29'
-           'xf86-video-intel-sna' 'xf86-video-intel-uxa' 'xf86-video-i810' 'xf86-video-intel-legacy')
+conflicts=('xf86-video-i810'
+           'xf86-video-intel'
+           'xf86-video-intel-legacy'
+           'xf86-video-intel-sna'
+           'xf86-video-intel-uxa'
+           'X-ABI-VIDEODRV_VERSION<28'
+           'X-ABI-VIDEODRV_VERSION>=29')
 groups=('xlibre-drivers')
 source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${pkgver}.tar.gz")
 sha256sums=('c37410bc6efd5789adcd9fd2c91308a73101b08419309d4755bd6b5fa5254eff')
