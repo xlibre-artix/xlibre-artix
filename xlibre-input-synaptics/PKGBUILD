@@ -17,10 +17,11 @@ license=('MIT')
 url='https://github.com/X11Libre/xf86-input-synaptics'
 depends=('glibc' 'libevdev' 'libx11' 'libxi' 'libxtst' 'xlibre-xserver')
 makedepends=('xlibre-xserver-devel' 'X-ABI-XINPUT_VERSION=26.0')
+provides=('xf86-input-synaptics')
 conflicts=('xf86-input-synaptics' 'X-ABI-XINPUT_VERSION<26' 'X-ABI-XINPUT_VERSION>=27')
+provides+=('synaptics')
+conflicts+=('synaptics')
 replaces=('synaptics')
-provides=('synaptics')
-conflicts=('synaptics')
 groups=('xlibre-drivers')
 install=xlibre-input-synaptics.install
 source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${pkgver}.tar.gz")
