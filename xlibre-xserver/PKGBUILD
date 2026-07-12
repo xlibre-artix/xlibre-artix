@@ -122,7 +122,7 @@ package_xlibre-xserver-common() {
   pkgdesc="XLibre server common files"
   depends=('xkeyboard-config' 'xorg-setxkbmap' 'xorg-xkbcomp')
   provides=('xorg-server-common')
-  conflicts=('xlibre-xserver-common-beta' 'xorg-server-common')
+  conflicts=('xorg-server-common')
 
   _install fakeinstall/usr/lib/xorg/protocol.txt
   _install fakeinstall/usr/share/man/man1/Xserver.1
@@ -161,7 +161,7 @@ package_xlibre-xserver() {
             'X-ABI-EXTENSION_VERSION=11.0'
             'X-ABI-VIDEODRV_VERSION=28.0'
             'X-ABI-XINPUT_VERSION=26.0')
-  conflicts=('nvidia-utils<=331.20' 'glamor-egl' 'xf86-video-modesetting' 'xlibre-xserver-beta' 'xorg-server')
+  conflicts=('nvidia-utils<=331.20' 'glamor-egl' 'xf86-video-modesetting' 'xorg-server')
   replaces=('glamor-egl' 'xf86-video-modesetting')
 
   _install fakeinstall/usr/bin/{X,Xorg,gtf,Xfbdev}
@@ -201,7 +201,7 @@ package_xlibre-xserver-xephyr() {
            'xcb-util-wm'
            'xlibre-xserver-common')
   provides=('xorg-server-xephyr')
-  conflicts=('xlibre-xserver-xephyr-beta' 'xorg-server-xephyr')
+  conflicts=('xorg-server-xephyr')
 
   _install fakeinstall/usr/bin/Xephyr
   _install fakeinstall/usr/share/man/man1/Xephyr.1
@@ -228,7 +228,7 @@ package_xlibre-xserver-xvfb() {
            'xlibre-xserver-common'
            'xorg-xauth')
   provides=('xorg-server-xvfb')
-  conflicts=('xlibre-xserver-xvfb-beta' 'xorg-server-xvfb')
+  conflicts=('xorg-server-xvfb')
 
   _install fakeinstall/usr/bin/Xvfb
   _install fakeinstall/usr/share/man/man1/Xvfb.1
@@ -255,7 +255,7 @@ package_xlibre-xserver-xnest() {
            'pixman'
            'xlibre-xserver-common')
   provides=('xorg-server-xnest')
-  conflicts=('xlibre-xserver-xnest-beta' 'xorg-server-xnest')
+  conflicts=('xorg-server-xnest')
 
   _install fakeinstall/usr/bin/Xnest
   _install fakeinstall/usr/share/man/man1/Xnest.1
@@ -273,7 +273,7 @@ package_xlibre-xserver-devel() {
            'xorg-util-macros' # not required but almost every XLibre pkg needs it
            'xorgproto')
   provides=('xorg-server-devel')
-  conflicts=('xlibre-xserver-devel-beta' 'xorg-server-devel')
+  conflicts=('xorg-server-devel')
 
   rm fakeinstall/etc/X11/xorg.conf.d/10-nvidia-modules.conf.debian
   rm fakeinstall/etc/X11/xorg.conf.d/10-nvidia.conf.debian
