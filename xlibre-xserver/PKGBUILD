@@ -7,10 +7,11 @@
 pkgbase=xlibre-xserver
 pkgname=('xlibre-xserver'
          'xlibre-xserver-common'
-         'xlibre-xserver-devel'
          'xlibre-xserver-xephyr'
          'xlibre-xserver-xnest'
-         'xlibre-xserver-xvfb')
+         'xlibre-xserver-xvfb'
+         'xlibre-xserver-devel' # devel last due to some checks there
+)
 pkgver=25.1.8
 pkgrel=50
 arch=('x86_64')

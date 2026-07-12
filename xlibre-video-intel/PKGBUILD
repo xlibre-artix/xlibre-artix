@@ -43,7 +43,7 @@ optdepends=('libxcursor: for intel-virtual-output'
             'libxss: for intel-virtual-output'
             'libxtst: for intel-virtual-output')
 replaces=('xf86-video-intel-uxa' 'xf86-video-intel-sna')
-provides=('xf86-video-intel-uxa' 'xf86-video-intel-sna')
+provides=('xf86-video-intel' 'xf86-video-intel-uxa' 'xf86-video-intel-sna')
 conflicts=('xf86-video-i810'
            'xf86-video-intel'
            'xf86-video-intel-legacy'
