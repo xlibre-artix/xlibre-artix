@@ -16,11 +16,7 @@ url='https://github.com/X11Libre/xf86-video-qxl'
 license=('MIT')
 depends=('glibc' 'libxfont2' 'spice' 'udev' 'xlibre-xserver')
 optdepends=('python: for Xspice')
-makedepends=('libcacard'
-             'spice-protocol'
-             'xlibre-xserver-devel'
-             'xorgproto'
-             'X-ABI-VIDEODRV_VERSION=28.0')
+makedepends=('libcacard' 'spice-protocol' 'xlibre-xserver-devel' 'X-ABI-VIDEODRV_VERSION=28.0')
 conflicts=('xf86-video-qxl' 'xf86-video-qxl-git' 'X-ABI-VIDEODRV_VERSION<28' 'X-ABI-VIDEODRV_VERSION>=29')
 groups=('xlibre-drivers')
 source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${pkgver}.tar.gz")
