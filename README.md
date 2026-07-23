@@ -1,4 +1,4 @@
-<!-- ![XLibre on Artix Linux](./docs/img/screenshot.jpg) -->
+![XLibre on Artix Linux](./docs/img/screenshot.jpg)
 
 # XLibre Testing Packages for Artix Linux
 
