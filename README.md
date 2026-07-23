@@ -19,27 +19,55 @@ sudo pacman-key --lsign-key 2AFFCD7B42ADD2E7
 
 You can read more about package signing on the [pacman/Package signing - ArchWiki](https://wiki.archlinux.org/title/Pacman/Package_signing#Adding_unofficial_keys) page.
 
-### Adding the Repository to Pacman
+### Adding a Repository to Pacman
 
-Once you added the public key, also add an entry for the XLibre repository to the file [`/etc/pacman.conf`](https://man.archlinux.org/man/pacman.conf.5) using [`sudo`](https://wiki.archlinux.org/title/Sudo) and your favorite editor.
+Once you added the public key, also add an entry for an XLibre repository to the file [`/etc/pacman.conf`](https://man.archlinux.org/man/pacman.conf.5) using [`sudo`](https://wiki.archlinux.org/title/Sudo) and your favorite editor. **IMPORTANT** Your choice of the following repositories has to be added after the `[system]` key, but **before** the `[world]` key. Artix Linux ships its own version of XLibre in the `world` repository and that needs to be overridden.
 
-> [!IMPORTANT]
-> The following entry has to be added after the `[system]` key, but **before** the `[world]` key. Artix ships its own version of XLibre in the `world` repository and that needs to be overridden.
+#### Stable Repository
+
+This repository contains the latest stable and tested XLibre 25.1 release series.
 
 ```ini
-[xlibre]
-Server = https://xlibre-artix.github.io/stable/$arch
+[xlibre-stable]
+Server = https://github.com/xlibre-artix/stable/releases/download/$arch
 ```
 
-Run `pacman` to update all package indexes and installed packages:
+#### Stable Testing Repository
+
+This repository contains the latest stable XLibre 25.1 release series. The packages need testing before they get released to the `stable` repository.
+
+```ini
+[xlibre-stable-testing]
+Server = https://github.com/xlibre-artix/stable-testing/releases/download/$arch
+```
+
+#### Oldstable Repository
+
+This repository contains the former stable and tested XLibre 25.0 release series.
+
+```ini
+[xlibre-oldstable]
+Server = https://github.com/xlibre-artix/oldstable/releases/download/$arch
+```
+
+#### Oldstable Testing Repository
+
+This repository contains the former stable XLibre 25.0 release series. The packages need testing before they get released to the `oldstable` repository.
+
+```ini
+[xlibre-oldstable-testing]
+Server = https://github.com/xlibre-artix/oldstable-testing/releases/download/$arch
+```
+
+### Installing XLibre
+
+After adding one of the above repositories, nun `pacman` to update all package indexes and installed packages:
 
 ```shell
 sudo pacman -Syyu
 ```
 
-### Installing XLibre
-
-Installing XLibre is as easy as installing the `xlibre-meta` package:
+Installing XLibre itself is as easy as installing the `xlibre-meta` package:
 
 ```shell
 sudo pacman -S xlibre-meta
