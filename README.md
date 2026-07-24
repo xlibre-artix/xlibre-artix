@@ -92,4 +92,4 @@ It says XLibre? Congratulations!
 
 ## Getting in Contact
 
-Please report any enhancement requests or issues with this repository at [Issues · xlibre-artix/xlibre-artix](https://github.com/xlibre-artix/xlibre-artix/issues). If you have a specific issue, please see the [list of package repositories](https://github.com/orgs/xlibre-artix/repositories?q=topic%3Apackage) and report it there. In case you need help, want to report success or talk about other aspects, please also check the official XLibre channels.
+Please report any enhancement requests or issues with this repository at [Issues · xlibre-artix/xlibre-artix](https://github.com/xlibre-artix/xlibre-artix/issues). In case you need help, want to report success or talk about other aspects, please also check the official XLibre channels.
