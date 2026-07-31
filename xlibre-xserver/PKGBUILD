@@ -83,33 +83,33 @@ build() {
 	export CXXFLAGS=${CXXFLAGS/-fno-plt}
 	export LDFLAGS=${LDFLAGS/-Wl,-z,now}
 
-  arch-meson "xserver-${pkgbase}-${pkgver}" build \
-    -D xephyr=true \
-    -D xfbdev=true \
-    -D xnest=true \
-    -D xorg=true \
-    -D xvfb=true \
-    -D dri1=true \
-    -D dri2=true \
-    -D dri3=true \
-    -D dtrace=false \
-    -D gbm=true \
-    -D glamor=true \
-    -D glx_dri=true \
-    -D ipv6=true \
-    -D legacy_nvidia_340x=true \
-    -D legacy_nvidia_padding=true \
-    -D libunwind=true \
-    -D linux_acpi=false \
-    -D mitshm=true \
-    -D seatd_libseat=false \
-    -D suid_wrapper=true \
-    -D systemd_logind=true \
-    -D udev=true \
-    -D udev_kms=true \
-    -D xcsecurity=true \
-    -D xkb_dir=/usr/share/X11/xkb \
-    -D xkb_output_dir=/var/lib/xkb
+	arch-meson "xserver-${pkgbase}-${pkgver}" build \
+		-D xephyr=true \
+		-D xfbdev=true \
+		-D xnest=true \
+		-D xorg=true \
+		-D xvfb=true \
+		-D dri1=true \
+		-D dri2=true \
+		-D dri3=true \
+		-D dtrace=false \
+		-D gbm=true \
+		-D glamor=true \
+		-D glx_dri=true \
+		-D ipv6=true \
+		-D legacy_nvidia_340x=true \
+		-D legacy_nvidia_padding=true \
+		-D libunwind=true \
+		-D linux_acpi=false \
+		-D mitshm=true \
+		-D seatd_libseat=false \
+		-D suid_wrapper=true \
+		-D systemd_logind=true \
+		-D udev=true \
+		-D udev_kms=true \
+		-D xcsecurity=true \
+		-D xkb_dir=/usr/share/X11/xkb \
+		-D xkb_output_dir=/var/lib/xkb
 
 	# Print config
 	meson configure build
