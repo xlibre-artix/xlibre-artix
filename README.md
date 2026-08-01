@@ -59,6 +59,15 @@ This repository contains the former stable XLibre 25.0 release series. The packa
 Server = https://github.com/xlibre-artix/oldstable-testing/releases/download/$arch
 ```
 
+#### Beta Repository
+
+This repository contains the next XLibre 25.2 release series. As the name implies, the packaged software is beta until the XLibre project considers 25.2.x as stable.
+
+```ini
+[xlibre-beta]
+Server = https://github.com/xlibre-artix/beta/releases/download/$arch
+```
+
 ### Installing XLibre
 
 After adding one of the above repositories, nun `pacman` to update all package indexes and installed packages:
