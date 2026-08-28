@@ -1,8 +1,8 @@
 ![XLibre on Artix Linux](./docs/img/screenshot.jpg)
 
-# XLibre Testing Packages for Artix Linux
+# XLibre Packages for Artix Linux
 
-This third-party repository provides [XLibre](https://xlibre.net) x86_64 binary packages for [Artix Linux](https://artixlinux.org) for testing purposes. XLibre is the community-managed display server for the [X Window System Protocol Version 11 (Wikipedia)](https://en.wikipedia.org/wiki/X_Window_System_core_protocol), in short, X11. You can learn more about XLibre at [xlibre.net](https://xlibre.net/).
+This third-party repository provides [XLibre](https://xlibre.net) x86_64 binary packages for [Artix Linux](https://artixlinux.org). XLibre is the community-managed display server for the [X Window System Protocol Version 11 (Wikipedia)](https://en.wikipedia.org/wiki/X_Window_System_core_protocol), in short, X11. You can learn more about XLibre at [xlibre.net](https://xlibre.net/).
 
 ## Installing XLibre Manually
 
