@@ -4,6 +4,8 @@
 # Contributor: AndyRTR <andyrtr@archlinux.org>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 
+: "${USE_SYSTEMD:=1}"
+
 pkgbase=xlibre-xserver
 pkgname=(
 	'xlibre-xserver'
@@ -36,9 +38,11 @@ license=(
 groups=('xlibre')
 url="https://xlibre.net"
 makedepends=(
+	'dbus'
 	'libepoxy'
 	'libpciaccess'
 	'libunwind'
+	'libudev.so'
 	'libx11'
 	'libxaw'
 	'libxcvt'
@@ -55,7 +59,6 @@ makedepends=(
 	'mesa-libgl'
 	'meson'
 	'pixman'
-	'dbus'
 	'xcb-util'
 	'xcb-util-image'
 	'xcb-util-keysyms'
@@ -67,6 +70,12 @@ makedepends=(
 	'xorgproto'
 	'xtrans'
 )
+
+((USE_SYSTEMD)) && depends=('libsystemd.so')
+((USE_SYSTEMD)) || optdepends=(
+	'elogind: login1 session management'
+)
+
 source=(
 	https://github.com/X11Libre/xserver/archive/refs/tags/${pkgbase}-"${pkgver}".tar.gz
 	xvfb-run # with updates from FC master
@@ -129,6 +138,7 @@ package_xlibre-xserver-common() {
 		'xorg-setxkbmap'
 		'xorg-xkbcomp'
 	)
+	optdepends=()
 	provides=('xorg-server-common')
 	conflicts=(
 		'xlibre-xserver-common-beta'
@@ -145,7 +155,7 @@ package_xlibre-xserver-common() {
 
 package_xlibre-xserver() {
 	pkgdesc="XLibre Xserver"
-	depends=(
+	depends+=(
 		'dbus'
 		'glibc'
 		'libbsd'
@@ -155,6 +165,7 @@ package_xlibre-xserver() {
 		'libpciaccess'
 		'libtirpc'
 		'libunwind'
+		'libudev.so'
 		'libxau'
 		'libxcvt' # FS#52949
 		'libxdmcp'
@@ -163,7 +174,6 @@ package_xlibre-xserver() {
 		'nettle'
 		'pixman'
 		'sh'
-		'elogind'
 		'xlibre-xserver-common'
 	)
 	# see xorg-server-*/hw/xfree86/common/xf86Module.h for ABI versions - we provide major numbers
@@ -173,9 +183,9 @@ package_xlibre-xserver() {
 		'X-ABI-VIDEODRV_VERSION=28.0'
 		'X-ABI-XINPUT_VERSION=26.0'
 		'x-server'
-		'x11win-server'
 		'xorg-server'
 	)
+	provides+=('x11win-server') # Artix only
 	conflicts=(
 		'glamor-egl'
 		'nvidia-utils<=331.20'
@@ -205,12 +215,13 @@ package_xlibre-xserver() {
 
 package_xlibre-xserver-xephyr() {
 	pkgdesc="A nested X server that runs as an X application"
-	depends=(
+	depends+=(
 		'glibc'
 		'libepoxy'
 		'libgl'
 		'libtirpc'
 		'libunwind'
+		'libudev.so'
 		'libx11'
 		'libxau'
 		'libxdmcp'
@@ -218,7 +229,6 @@ package_xlibre-xserver-xephyr() {
 		'libxshmfence'
 		'nettle'
 		'pixman'
-		'elogind'
 		'xcb-util'
 		'xcb-util-image'
 		'xcb-util-keysyms'
@@ -226,6 +236,7 @@ package_xlibre-xserver-xephyr() {
 		'xcb-util-wm'
 		'xlibre-xserver-common'
 	)
+	optdepends=()
 	provides=('xorg-server-xephyr')
 	conflicts=(
 		'xlibre-xserver-xephyr-beta'
@@ -246,7 +257,7 @@ package_xlibre-xserver-xvfb() {
 		'GPL-2.0-only'
 		'MIT'
 	)
-	depends=(
+	depends+=(
 		'glibc'
 		'libgl'
 		'libtirpc'
@@ -257,10 +268,10 @@ package_xlibre-xserver-xvfb() {
 		'nettle'
 		'pixman'
 		'sh'
-		'elogind'
 		'xlibre-xserver-common'
 		'xorg-xauth'
 	)
+	optdepends=()
 	provides=('xorg-server-xvfb')
 	conflicts=(
 		'xlibre-xserver-xvfb-beta'
@@ -279,7 +290,7 @@ package_xlibre-xserver-xvfb() {
 
 package_xlibre-xserver-xnest() {
 	pkgdesc="A nested X server that runs as an X application"
-	depends=(
+	depends+=(
 		'glibc'
 		'libtirpc'
 		'libunwind'
@@ -290,9 +301,9 @@ package_xlibre-xserver-xnest() {
 		'libxfont2'
 		'nettle'
 		'pixman'
-		'elogind'
 		'xlibre-xserver-common'
 	)
+	optdepends=()
 	provides=('xorg-server-xnest')
 	conflicts=(
 		'xlibre-xserver-xnest-beta'
@@ -316,6 +327,7 @@ package_xlibre-xserver-devel() {
 		'xorg-util-macros' # not required but almost every XLibre pkg needs it
 		'xorgproto'
 	)
+	optdepends=()
 	provides=('xorg-server-devel')
 	conflicts=(
 		'xlibre-xserver-devel-beta'
