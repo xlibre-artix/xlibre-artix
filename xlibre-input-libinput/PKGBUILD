@@ -6,8 +6,8 @@
 
 pkgname=xlibre-input-libinput
 _pkgname=xf86-input-libinput
-pkgver=25.0.1
-pkgrel=51
+pkgver=25.0.2rc2
+pkgrel=1
 pkgdesc="Generic input driver for the XLibre Xserver based on libinput"
 arch=('x86_64')
 license=('MIT')
@@ -31,11 +31,14 @@ conflicts=(
 	'xf86-input-libinput'
 )
 groups=('xlibre-drivers')
-source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${pkgver}.tar.gz")
-sha512sums=('e11920ace1780981ee4f7c54f7da2a1fcaa78dde37e880f664fb8d8b610ce7b79003f8c5409579a82c751cceb0aeefa084344e3c5c9f53c2cbf6df87886200ef')
+
+_srcver=${pkgver/rc/-rc}
+
+source=("${url}/archive/refs/tags/xlibre-${_pkgname}-${_srcver}.tar.gz")
+sha512sums=('7f96f4d718d1313776b1b2f0c24f2fb235700e65168e1ef6e4669c2c394354e5ba5297021805f2e86c64dff27f88e86e3a7f4dd6e5b44455e7141c305d816024')
 
 build() {
-	arch-meson ${_pkgname}-xlibre-${_pkgname}-${pkgver} build \
+	arch-meson "$_pkgname-xlibre-$_pkgname-$_srcver" build \
 		-D xorg-conf-dir=/usr/share/X11/xorg.conf.d/
 
 	ninja -C build
